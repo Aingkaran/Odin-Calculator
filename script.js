@@ -21,6 +21,14 @@ const divide = function(numbers) {
     return numbers.reduce((divide1, divide2) => divide1/divide2);
   };
 
+const remainder = function(numbers) {
+    return numbers.reduce((remainder1, remainder2) => remainder1%remainder2);
+  };
+
+
+
+//Combine above mathemtaical equations into on function 
+//that can call all functions depending on operator input
 
 const operate= function(operator, a, b){
     if (operator== "addition"){
@@ -40,6 +48,11 @@ const operate= function(operator, a, b){
 
     }
 
+    else if (operator=="remainder"){
+        return remainder([a,b])
+
+    }
+    
     else {
         return "Something Went Wrong"
     }
