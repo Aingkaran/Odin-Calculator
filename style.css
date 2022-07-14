@@ -4,17 +4,61 @@ body{
     margin-top: 50px;
 }
 .container{
-    background-color: grey;
+    background-color: rgb(46, 46, 46);
     height: 600px;
     width: 400px;
     display:flex;
     justify-content: center;
     text-align: center;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 25px;
 }
 
 
 .display {
-    background-color: black;
-    width: 60px;
-    height: 20px;
+    background-color: rgb(136, 134, 134);
+    width: 400px;
+    height: 100px;
+    display:flex;
+    text-align: center;
+    justify-content: flex-end;
+    border-color:white;
+    border-width: 20px;
+    border-radius: 15px;
+
+
+}
+
+button{
+    font-size: 30px;
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border-radius: 25px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+.row{
+    display: flex;
+
+}
+
+#equals{
+    width:175px;
+
+}
+
+#color{
+    background-color: rgb(190, 9, 9);
+}
+
+
+.display1{
+    
+    font-size: 80px;
 }

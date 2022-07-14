@@ -59,3 +59,30 @@ const operate= function(operator, a, b){
 }
 
 
+//function allows user to click on buttons and actually have it appear on the calcualtor display
+const calcDisplay = document.querySelector('.display');
+const calcText = document.createElement('div');
+calcText.classList.add('display1');
+
+
+
+
+const btn = document.querySelectorAll('button');
+
+
+btn.forEach((button)=>{
+    button.addEventListener('click', (e)=>{
+    
+        console.log(e.target.value)
+        if (e.target.value=="1")
+        calcText.textContent= e.target.value ;
+        calcDisplay.appendChild(calcText);
+
+    
+        });
+        
+
+});
+
+
+
