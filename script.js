@@ -116,7 +116,7 @@ btn.forEach((button)=>{
 
                 calcText.textContent= displayCont ;
                 calcDisplay.appendChild(calcText);
-                numResult=operate(chosenOp,parseFloat(numOne),parseFloat(numTwo))
+                numResult=parseFloat(operate(chosenOp,parseFloat(numOne),parseFloat(numTwo))).toFixed(2)
 
             }
                 
@@ -174,8 +174,8 @@ btn.forEach((button)=>{
             else{
                 numTwo=displayCont;
 
-                displayCont=operate(chosenOp,parseFloat(numOne),parseFloat(numTwo))
-                if (String(numResult).length>8){
+                displayCont=parseFloat(operate(chosenOp,parseFloat(numOne),parseFloat(numTwo))).toFixed(2)
+                if (String(displayCont).length>8){
                     calcText.textContent= "Error"
     
                 }
