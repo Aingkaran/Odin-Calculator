@@ -22,7 +22,7 @@ const divide = function(numbers) {
   };
 
 const percentage = function(numbers) {
-    return numbers.reduce((remainder1, remainder2) => (remainder2/remainder1)*100);
+    return numbers.reduce((percentage1, percentage2) => (percentage2/percentage1)*100);
   };
 
 
@@ -70,6 +70,7 @@ let displayCont= ""
 let numOne="";
 let numTwo="";
 let numResult= ""
+let longText=""
 
 const btn = document.querySelectorAll('button');
 
@@ -79,29 +80,52 @@ btn.forEach((button)=>{
     button.addEventListener('click', (e)=>{
         // first "if" statement is to allow for only the numbers and period to display on the calcualtor
         if (e.target.value<10||e.target.value=="."){
-            if (numOne==""){
+
+            if (displayCont.length>8){
+                //stops any more input
+
+            }
+
+            else if (numOne==""){
                 displayCont+= e.target.value
+                
+                if (displayCont.split(".").length>2){
+                    calcText.textContent= "Error"
+               }
+               else{
+                
                 console.log(e.target.value)
                 calcText.textContent= displayCont ;
                 calcDisplay.appendChild(calcText);
+            }
                 
             }
-            else {
-                calcText.textContent="";
-                displayCont=""
-                displayCont+= e.target.value
 
+           
+
+
+            else {
+                
+                
+               displayCont+= e.target.value
+               if (displayCont.split(".").length>2){
+                    calcText.textContent= "Error"
+               }
+               else{
                 numTwo=displayCont;
 
                 calcText.textContent= displayCont ;
                 calcDisplay.appendChild(calcText);
                 numResult=operate(chosenOp,parseFloat(numOne),parseFloat(numTwo))
+
+            }
                 
             }
+            
         }
 
         //now when the user clicks the operator it first stores the initial chosen numbers by the users in numOne and then clears the displayCont variable 
-        //and calc display
+        //and calc display. The else statement allows the result of the previous operation to be stored in numOne so that it can carried forward to the next operation above.
 
         else if (e.target.value=="addition"||e.target.value=="subtraction"||e.target.value=="multiplication"||e.target.value=="division"||e.target.value=="percentage"){
             chosenOp= e.target.value
@@ -114,25 +138,56 @@ btn.forEach((button)=>{
                 
             }
 
+            else if (numTwo==0) {
+                calcText.textContent= "WRONG"
+
+            }
+            else if (String(numResult).length>8){
+                calcText.textContent= "Error"
+
+            }
+            
+
             else{
                 numOne=numResult
+
                 calcText.textContent= numOne ;
+
                 calcDisplay.appendChild(calcText);
-                
+                console.log(numOne)
+                displayCont="";
                 
             }
+          
             
         }
 
         // This if statement will first the last number that was displayed to a variable numTWO then trigger the "operate()" function 
         else if (e.target.value=="equals"){
-            
-            numTwo=displayCont;
+            if (numTwo==0) {
+                calcText.textContent= "WRONG"
 
-            displayCont=operate(chosenOp,parseFloat(numOne),parseFloat(numTwo))
-            calcText.textContent= displayCont;
-            calcDisplay.appendChild(calcText);
-            numOne=numTwo
+            }
+
+            
+
+            else{
+                numTwo=displayCont;
+
+                displayCont=operate(chosenOp,parseFloat(numOne),parseFloat(numTwo))
+                if (String(numResult).length>8){
+                    calcText.textContent= "Error"
+    
+                }
+                else{
+
+               
+                calcText.textContent= displayCont;
+                calcDisplay.appendChild(calcText);
+                numOne=numTwo
+                }
+
+            }
         
             
         }
