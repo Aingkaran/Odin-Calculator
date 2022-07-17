@@ -69,7 +69,7 @@ let displayCont= ""
 
 let numOne="";
 let numTwo="";
-
+let numResult= ""
 
 const btn = document.querySelectorAll('button');
 
@@ -79,10 +79,25 @@ btn.forEach((button)=>{
     button.addEventListener('click', (e)=>{
         // first "if" statement is to allow for only the numbers and period to display on the calcualtor
         if (e.target.value<10||e.target.value=="."){
-            displayCont+= e.target.value
-            console.log(e.target.value)
-            calcText.textContent= displayCont ;
-            calcDisplay.appendChild(calcText);
+            if (numOne==""){
+                displayCont+= e.target.value
+                console.log(e.target.value)
+                calcText.textContent= displayCont ;
+                calcDisplay.appendChild(calcText);
+                
+            }
+            else {
+                calcText.textContent="";
+                displayCont=""
+                displayCont+= e.target.value
+
+                numTwo=displayCont;
+
+                calcText.textContent= displayCont ;
+                calcDisplay.appendChild(calcText);
+                numResult=operate(chosenOp,parseFloat(numOne),parseFloat(numTwo))
+                
+            }
         }
 
         //now when the user clicks the operator it first stores the initial chosen numbers by the users in numOne and then clears the displayCont variable 
@@ -90,24 +105,35 @@ btn.forEach((button)=>{
 
         else if (e.target.value=="addition"||e.target.value=="subtraction"||e.target.value=="multiplication"||e.target.value=="division"||e.target.value=="percentage"){
             chosenOp= e.target.value
-            numOne= displayCont;
-            calcText.textContent="";
-            displayCont=""
-            calcDisplay.appendChild(calcText);
-            if (e.target.value<10||e.target.value=="."){
-                displayCont+= e.target.value
-                calcText.textContent= displayCont ;
+            if (numResult==""){
+                
+                numOne= displayCont;
+                calcText.textContent="";
+                displayCont=""
                 calcDisplay.appendChild(calcText);
-                numTwo=displayCont;
+                
             }
+
+            else{
+                numOne=numResult
+                calcText.textContent= numOne ;
+                calcDisplay.appendChild(calcText);
+                
+                
+            }
+            
         }
 
         // This if statement will first the last number that was displayed to a variable numTWO then trigger the "operate()" function 
         else if (e.target.value=="equals"){
-            numTwo=displayCont
+            
+            numTwo=displayCont;
+
             displayCont=operate(chosenOp,parseFloat(numOne),parseFloat(numTwo))
             calcText.textContent= displayCont;
             calcDisplay.appendChild(calcText);
+            numOne=numTwo
+        
             
         }
 
@@ -118,6 +144,10 @@ btn.forEach((button)=>{
             calcText.textContent="";
             displayCont=""
             calcDisplay.appendChild(calcText);
+            numOne=""
+            numTwo=""
+            numResult=""
+
         }
 
         //backspace button clears the last digit displayed
