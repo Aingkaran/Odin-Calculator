@@ -164,7 +164,7 @@ btn.forEach((button)=>{
 
         // This if statement will first the last number that was displayed to a variable numTWO then trigger the "operate()" function 
         else if (e.target.value=="equals"){
-            if (numTwo==0) {
+            if (numTwo==0&&chosenOp=="division") {
                 calcText.textContent= "WRONG"
 
             }
