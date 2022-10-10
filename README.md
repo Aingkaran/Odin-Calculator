@@ -1,1 +1,1 @@
-LIVE DEMO: [Calculator] (https://github.com/Aingkaran/Odin-Calculator)
+LIVE DEMO : [Calculator](https://aingkaran.github.io/Odin-Calculator/)
